@@ -25,7 +25,6 @@ export class AppComponent {
     this.isMobileView = event.innerWidth <= 750;
     if (this.previousMobileScreenValue !== this.isMobileView) {
       this.previousMobileScreenValue = this.isMobileView;
-      console.log(this.isMobileView)
     }
   }
 

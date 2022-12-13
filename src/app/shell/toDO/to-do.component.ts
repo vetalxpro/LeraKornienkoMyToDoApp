@@ -21,7 +21,6 @@ export class ToDoComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.selectedList = this.menuLists[0];
-    console.log(this.isMobileView)
   }
 
   openMenuList(menuList: any) {
@@ -47,10 +46,8 @@ export class ToDoComponent implements OnInit, OnDestroy{
     let todo = this.todos.filter(x => x.id === id)[0];
     todo.isComplete = true;
     this.completeTodos.push(todo);
-    console.log(this.completeTodos)
     let difference = this.todos.filter(x => !this.completeTodos.includes(x)).concat(this.completeTodos.filter(x => !this.todos.includes(x)));
     this.activeTodos = difference;
-    console.log(this.activeTodos)
   }
 
   onClearComplete(): void {
