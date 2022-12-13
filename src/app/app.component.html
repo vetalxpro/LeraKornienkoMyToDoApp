@@ -1,0 +1,7 @@
+<div>
+  <div fxLayout="column">
+    <div [ngClass]="isMobileView ? 'content-mobile' : 'content'">
+      <app-to-do [isMobileView]="isMobileView"></app-to-do>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+
+<div [ngClass]="isMobileView ? 'header-main-mobile' : 'header-main'">
+<div [ngClass]="isMobileView ? 'header-mobile' : 'header'"fxLayout="row" fxLayoutAlign="space-between center">
+  <h2 class="title">T O D O</h2>
+  <img class="img" src="../../assets/icon-moon.svg">
+</div>
+
+  <div [ngClass]="isMobileView ? 'main-container-mobile' : 'main-container'">
+  <form #f="ngForm" [ngClass]="isMobileView ? 'form-mobile' : 'form'">
+    <button class="circle-empty" (click)="onSubmit(f)"></button>
+    <input matInput type="text" [ngClass]="isMobileView ? 'input-title-mobile' : 'input-title'" id="title" name="title"  ngModel placeholder="Create a new todo..."
+      disableOptionCentering maxlength="256" appTrimValue />
+  </form>
+
+  <div class="card-wrapper">
+
+    <ng-container *ngIf="selectedList === 'All'">
+      <div *ngFor="let todo of todos">
+    <div id="All" [ngClass]="isMobileView ? 'card-mobile' : 'card'">
+      <button class="circle-empty" [disabled]="this.todo.isComplete===true" (click)="onComplete(this.todo.id)">
+        <svg class="svg" *ngIf="this.todo.isComplete===true" xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+      </svg></button>
+      <div [ngClass]="this.todo.isComplete ? 'card-title-disable' : 'card-title'">{{this.todo.title}}</div>
+      <button class="delete" (click)="onDelete(this.todo.id)">
+        <svg class="svgDelete" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+          <path fill="#494C6B" fill-rule="evenodd"
+            d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+    </ng-container>
+    <ng-container  *ngIf="selectedList === 'Active'">
+      <div *ngFor="let todo of todos">
+      <div id="Active" [ngClass]="isMobileView ? 'card-mobile' : 'card'" *ngIf="this.todo.isComplete===false">
+        <button class="circle-empty" (click)="onComplete(this.todo.id)"></button>
+        <div class="card-title">{{this.todo.title}}</div>
+        <button class="delete" (click)="onDelete(this.todo.id)">
+          <svg class="svgDelete" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+            <path fill="#494C6B" fill-rule="evenodd"
+              d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z" />
+          </svg>
+        </button>
+      </div>
+      </div>
+    </ng-container>
+    <ng-container   *ngIf="selectedList === 'Completed'">
+      <div *ngFor="let todo of todos">
+      <div id="Completed" [ngClass]="isMobileView ? 'card-mobile' : 'card'" *ngIf="this.todo.isComplete===true">
+      <button class="circle-done" disabled (click)="onComplete(this.todo.id)">
+        <svg *ngIf="this.todo.isComplete===true" xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+          <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+        </svg>
+      </button>
+      <div [ngClass]="this.todo.isComplete ? 'card-title-disable' : 'card-title'">{{this.todo.title}}</div>
+      <button class="delete" (click)="onDelete(this.todo.id)">
+        <svg class="svgDelete" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+          <path fill="#494C6B" fill-rule="evenodd"
+            d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z" />
+        </svg>
+      </button>
+      </div>
+      </div>
+    </ng-container>
+  </div>
+
+    <div [ngClass]="isMobileView ? 'container-mobile' : 'container'" fxLayout="row" fxLayoutAlign="space-between center">
+      <p class="textNBold">Items left {{this.activeTodos.length}}</p>
+      <div class="textBold">
+          <span *ngFor="let menuList of menuLists" class="text">
+            <a  class="text" (click)="openMenuList(menuList)" href="#">{{menuList}}</a>
+          </span>
+      </div>
+      <p class="textNBoldcoursor" (click)="onClearComplete()">Clear Completed</p>
+    </div>
+  </div>
+</div>
