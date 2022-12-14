@@ -2,6 +2,8 @@
   "name": "thinghs-board",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -9,6 +11,7 @@
     "test": "ng test"
   },
   "private": true,
+  "homepage": "https://lerakornienko.github.io/MyToDoApp/",
   "dependencies": {
     "@angular/animations": "^14.1.0",
     "@angular/cdk": "^14.2.5",
@@ -33,6 +36,7 @@
     "@angular/cli": "~14.1.2",
     "@angular/compiler-cli": "^14.1.0",
     "@types/jasmine": "~4.0.0",
+    "gh-pages": "^4.0.0",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
